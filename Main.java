@@ -1,15 +1,5 @@
 /* WORD LADDER Main.java
- * EE422C Project 3 submission by
- * Replace <...> with your actual data.
- * Ashkan Vafaee
- * av28837
- * 16238
- * Kevin Chau
- * kc28535
- * 16238
- * Slip days used: <0>
- * Git URL:https://github.com/ashkanvafaee/EE422C
- * Spring 2017
+ * Implementation of BFS and DFS to find word ladders given a start and end word
  */
 
 package assignment3;
@@ -29,7 +19,6 @@ public class Main {
 	
 	static Set<String> dict = new HashSet <String>(); 
 
-	// static variables and constants only here.
 
 	public static void main(String[] args) throws Exception {
 
@@ -57,15 +46,8 @@ public class Main {
 		}
 
 		return;
-
-		// TODO methods to read in words, output ladder
 	}
 
-	public static void initialize() {
-		// initialize your static variables or constants here.
-		// We will call this method before running our JUNIT tests. So call it
-		// only once at the start of main.
-	}
 
 	/**
 	 * @param keyboard
@@ -139,12 +121,13 @@ public class Main {
 		String currentWord = start;
 		checker.add(start);
 		
-		int skip = 0;														//used to skip same initial letters
+		int skip = 0;						//used to skip same initial letters
 
 		for (int i = 0; i < start.length(); i++) {
 			word = start.toCharArray();
-			while((skip+i)<start.length() && word[(i+skip)%(start.length())] == end.toCharArray()[(i+skip)%(start.length())]){		//while start and end letters are the same, skip them
-				str[(i+skip)%(start.length())]=0;			//mark skips
+			//while start and end letters are the same, skip them
+			while((skip+i)<start.length() && word[(i+skip)%(start.length())] == end.toCharArray()[(i+skip)%(start.length())]){		
+				str[(i+skip)%(start.length())]=0;	//mark skips
 				skip++;
 				}
 			
@@ -154,8 +137,6 @@ public class Main {
 			
 			
 			for (int j = 0; j < 26; j++) {
-				//word[(i+skip)%start.length()] = (char) (j + 97);
-				//word[i] = (char) (j+97);
 				if((end.toCharArray()[(i+skip)%(start.length())] + j)>122){				// 122 = 'z'
 					word[(i+skip)%start.length()] = (char) (end.toCharArray()[(i+skip)%(start.length())] + j -26);
 				}
@@ -233,10 +214,6 @@ public class Main {
 
 		
 		ArrayList<String> temp = new ArrayList<String>();	
-		//if(start.equals(initial.get(0))){
-		//temp.add(initial.get(0));
-		//temp.add(initial.get(1));
-		//}
 
 		// Returned list should be ordered start to end. Include start and end.
 		// If ladder is empty, return list with just start and end.
@@ -252,7 +229,7 @@ public class Main {
 			dict.clear();
 		}
 
-		return temp; // replace this line later with real return
+		return temp; 
 	}
 
 	
@@ -346,7 +323,7 @@ public class Main {
 				dataReversed.add(data.get(i));
 			}
 
-			return dataReversed; // replace this line later with real return
+			return dataReversed; 
 		}
 
 		else {
@@ -397,7 +374,4 @@ public class Main {
 			System.out.println("no word ladder can be found between " + ladder.get(0) + " and " + ladder.get(1) + ".");
 		}
 	}
-
-	// TODO
-	// Other private static methods here
 }
